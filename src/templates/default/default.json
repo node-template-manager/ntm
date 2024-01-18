@@ -1,0 +1,33 @@
+{
+  "srck": {
+    "type": "folder",
+    "content": {
+      "controllers":{
+        "type": "folder",
+        "content": {}
+      },
+      "models":{
+        "type": "folder",
+        "content": {}
+      },
+      "routes":{
+        "type": "folder",
+        "content": {}
+      },
+      "middlewares":{
+        "type": "folder",
+        "content": {}
+      },
+      "utils":{
+        "type": "folder",
+        "content": {}
+      },
+      "app.js":{
+        "type": "file"
+      }
+    }
+  },
+  ".env": {
+    "type": "file"
+  }
+}
