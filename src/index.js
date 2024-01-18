@@ -16,13 +16,18 @@ yargs
   }, function (argv) {
     console.log('hello', argv.name, 'welcome to yargs!')
   })
-  .command('init [template]', 'create a node project with a template', (yargs) => {
-    yargs.positional('template', {
+  .command('init [template] [projectPath]', 'create a node project with a template', (yargs) => {
+    yargs.positional(
+      'template', {
       type: 'string',
       default: 'default',
       describe: 'the template name'
+    }).positional('projectPath', {
+      type: 'string',
+      default: '.',
+      describe: 'project root folder'
     })
-  }, function(argv){
+  }, function (argv) {
     init(argv)
   })
   .help()
