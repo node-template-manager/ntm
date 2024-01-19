@@ -25,10 +25,22 @@
       "app.js": {
         "type": "file",
         "isCreated": true
+      },
+      "config.js": {
+        "type": "file",
+        "isCreated": true
+      },
+      "db.js": {
+        "type": "file",
+        "isCreated": true
+      },
+      "index.js": {
+        "type": "file",
+        "isCreated": true
       }
     }
   },
-  ".env": {
+  ".env.example": {
     "type": "file",
     "isCreated": true
   }
