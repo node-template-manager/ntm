@@ -15,7 +15,7 @@ const init = (argv) => {
     
     const templateData = readJSONFile(templatePath)
 
-    creator(templateData, projectPath)
+    creator(templateData, projectPath, template)
   } catch (error) {
 
   }

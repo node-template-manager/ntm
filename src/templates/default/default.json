@@ -2,32 +2,34 @@
   "srck": {
     "type": "folder",
     "content": {
-      "controllers":{
+      "controllers": {
         "type": "folder",
         "content": {}
       },
-      "models":{
+      "models": {
         "type": "folder",
         "content": {}
       },
-      "routes":{
+      "routes": {
         "type": "folder",
         "content": {}
       },
-      "middlewares":{
+      "middlewares": {
         "type": "folder",
         "content": {}
       },
-      "utils":{
+      "utils": {
         "type": "folder",
         "content": {}
       },
-      "app.js":{
-        "type": "file"
+      "app.js": {
+        "type": "file",
+        "isCreated": true
       }
     }
   },
   ".env": {
-    "type": "file"
+    "type": "file",
+    "isCreated": true
   }
 }
