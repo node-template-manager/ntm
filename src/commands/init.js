@@ -9,15 +9,16 @@ const init = (argv) => {
 
   try {
     // execute npm init
-    //execSync('npm init -y', { cwd: path, stdio: 'inherit' })
+    execSync('npm init -y', { cwd: path, stdio: 'inherit' })
 
     const templatePath = path.join(__dirname, `../templates/${template}/${template}.json`)
     
     const templateData = readJSONFile(templatePath)
 
+    // create files & folders
     creator(templateData, projectPath, template)
   } catch (error) {
-
+    console.log('init function error: ',error)
   }
 }
 
