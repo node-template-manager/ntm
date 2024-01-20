@@ -1,7 +1,8 @@
 const path = require('path')
 const fse = require('fs-extra')
-const { execSync, exec } = require('child_process')
+const { execSync } = require('child_process')
 const { creator } = require('../utils/creator')
+const { createDepends } = require('../utils/createDepends')
 
 const init = (argv) => {
   const { template, projectPath } = argv
@@ -17,6 +18,14 @@ const init = (argv) => {
 
     // create files & folders
     creator(templateData.project, projectPath, template)
+
+    // create node dependencies
+    createDepends(templateData.dependencies)
+
+    // create node dev dependencies
+    createDepends(templateData.devDependencies, kind='dev')
+
+    console.log("Proyecto iniciado con éxito :)")
   } catch (error) {
     console.log('init function error: ',error)
   }
