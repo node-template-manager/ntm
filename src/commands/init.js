@@ -3,12 +3,20 @@ const fse = require('fs-extra')
 const { execSync } = require('child_process')
 const { creator } = require('../utils/creator')
 const { createDepends } = require('../utils/createDepends')
+const {checkTemplate} = require('../utils/checkTemplate')
 
 const init = (argv) => {
-  const { template, projectPath } = argv
-  console.log('Has elegido la plantilla ', template)
-
+  
   try {
+    const { template, projectPath } = argv
+
+    // if template doesn't exist, throw error
+    if(!checkTemplate(template)){
+      throw Error("Select an existed template")
+    }
+
+    console.log('Has elegido la plantilla ', template)
+    
     // execute npm init
     execSync('npm init -y')
 
@@ -27,7 +35,7 @@ const init = (argv) => {
 
     console.log("Proyecto iniciado con éxito :)")
   } catch (error) {
-    console.log('init function error: ',error)
+    console.log('ntm init error -> ',error.message)
   }
 }
 
