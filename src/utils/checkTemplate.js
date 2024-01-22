@@ -4,7 +4,7 @@ const path = require('path')
 
 /**
  * Check if template given exists
- * @param {*} name template's name
+ * @param {string} name template's name
  * @returns true if existis / false if not
  */
 const checkTemplate = (name) => {
