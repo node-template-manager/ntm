@@ -21,5 +21,15 @@ yargs
   }, function (argv) {
     init(argv)
   })
+  .command('create <name>', 'create an empty template', (yargs) => {
+    yargs.positional(
+      'name', {
+      type: 'string',
+      describe: 'template name'
+    }
+    )
+  }, function (argv) {
+    create(argv)
+  })
   .help()
   .argv
