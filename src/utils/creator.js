@@ -10,18 +10,29 @@ const path = require('path')
  */
 const creator = (templData, projectPath, template = null) => {
   try {
-    for (let key in templData) {
-      if (templData[key].type === "folder" && Object.keys(templData[key].content).length > 0) {
-        createFolder(key, projectPath, templData[key].content, template)
-      } else if (templData[key].type === "folder" && Object.keys(templData[key].content).length <= 0) {
-        createFolder(key, projectPath, template)
+    let isRoot = Object.keys(templData)[0] === "root"
 
-      } else if (templData[key].type === "file" && !templData[key].isCreated) {
-        createFile(key, projectPath)
-      } else if (templData[key].type === "file" && templData[key].isCreated) {
-        copyFile(key, projectPath, template)
+    if (isRoot) {
+      const rootPath = path.join(__dirname, '../templates')
+      createFolder(template, rootPath, templData["root"].content, template)
+    } else {
+
+      for (let key in templData) {
+        if (templData[key].type === "folder" && Object.keys(templData[key].content).length > 0) {
+          createFolder(key, projectPath, templData[key].content, template)
+        } else if (templData[key].type === "folder" && Object.keys(templData[key].content).length <= 0) {
+          createFolder(key, projectPath, template)
+
+        } else if (templData[key].type === "file" && !templData[key].isCreated) {
+          createFile(key, projectPath)
+        } else if (templData[key].type === "file" && templData[key].isCreated) {
+          copyFile(key, projectPath, template)
+        }
       }
     }
+
+
+
   } catch (error) {
     throw error
   }
@@ -85,7 +96,16 @@ const createFile = (key, projectPath) => {
  */
 const copyFile = (key, projectPath, template) => {
   try {
-    const srcFile = path.join(__dirname, `../templates/${template}/files/${key}`)
+    let srcFile = ""
+    if (key === "root.json") {
+      srcFile = path.join(__dirname, `../config/create/${key}`)
+      key = template + '.json'
+    } else {
+
+      srcFile = path.join(__dirname, `../templates/${template}/files/${key}`)
+
+    }
+
     fsa.copyFileSync(srcFile, `${projectPath}/${key}`)
   } catch (error) {
     throw error
