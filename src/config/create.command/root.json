@@ -1,0 +1,30 @@
+{
+  "name": "",
+  "author": "",
+  "github": "",
+  "dependencies":{
+
+  },
+  "devDependencies": {
+
+  },
+  "project": {
+    "folder with content": {
+      "type": "folder",
+      "content": {
+        "empty folder": {
+          "type": "folder",
+          "content": {}
+        },
+        "new file": {
+          "type": "file",
+          "isCreated": "false"
+        },
+        "existed file": {
+          "type": "file",
+          "isCreated": true
+        }
+      }
+    }
+  }
+}

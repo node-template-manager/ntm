@@ -1,0 +1,19 @@
+
+{
+  "template": {
+    "root-create": {
+      "type": "folder",
+      "content": {
+        "files": {
+          "type": "folder",
+          "content": {}
+        },
+        "root-create.json": {
+          "type": "file",
+          "isCreated": "true",
+          "path": "../config/create/"
+        }
+      }
+    }
+  }
+}

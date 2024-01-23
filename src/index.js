@@ -3,6 +3,7 @@
 
 const yargs = require("yargs");
 const { init } = require("./commands/init");
+const { create } = require("./commands/create");
 
 yargs
   .scriptName("ntm")
