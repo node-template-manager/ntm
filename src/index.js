@@ -4,6 +4,7 @@
 const yargs = require("yargs");
 const { init } = require("./commands/init");
 const { create } = require("./commands/create");
+const { rct } = require("./commands/rct");
 
 yargs
   .scriptName("ntm")
@@ -31,6 +32,22 @@ yargs
     )
   }, function (argv) {
     create(argv)
+  })
+  .command('react <action> ', 'make an action for React projects', (yargs) => {
+    yargs.positional(
+      'action', {
+        alias: 'rct',
+        type: 'string',
+        describe: 'action to do',
+        choices: [
+          'component',
+          'route',
+          'hook'
+        ]
+      }
+    )
+  }, function(argv){
+    rct(argv)
   })
   .help()
   .argv
