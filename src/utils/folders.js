@@ -16,7 +16,7 @@ const findFolder = (currentPath, folder) => {
 
   const folderPath = path.dirname(currentPath);
   if (folderPath === currentPath) {
-    throw Error("'src' folder not found");
+    return false
   }
 
   return findFolder(folderPath, 'src');
