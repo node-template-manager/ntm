@@ -19,7 +19,7 @@ const findFolder = (currentPath, folder) => {
     return false
   }
 
-  return findFolder(folderPath, 'src');
+  return findFolder(folderPath, folder);
 };
 
 
