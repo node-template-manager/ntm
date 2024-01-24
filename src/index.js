@@ -33,10 +33,9 @@ yargs
   }, function (argv) {
     create(argv)
   })
-  .command('react <action> ', 'make an action for React projects', (yargs) => {
+  .command(['react', 'rct <action>'], 'make an action for React projects', (yargs) => {
     yargs.positional(
       'action', {
-        alias: 'rct',
         type: 'string',
         describe: 'action to do',
         choices: [
