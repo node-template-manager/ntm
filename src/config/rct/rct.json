@@ -1,0 +1,14 @@
+{
+  "template": {
+    "root.css": {
+      "type": "file",
+      "isCreated": "true",
+      "path": "../config/rct/"
+    },
+    "root.jsx": {
+      "type": "file",
+      "isCreated": "true",
+      "path": "../config/rct/"
+    }
+  }
+}
