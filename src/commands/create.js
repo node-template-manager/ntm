@@ -1,4 +1,4 @@
-const { checkTemplate } = require("../utils/checkTemplate")
+const { TEMPLATES } = require('../config/init/templates')
 const path = require('path')
 const { creator } = require("../utils/creator")
 const fse = require('fs-extra')
@@ -10,7 +10,7 @@ const create = (argv) => {
     const { name } = argv
 
     // template's name must not exists
-    if(checkTemplate()){
+    if(TEMPLATES.includes(name)){
       throw Error("name already exists")
     }
 
