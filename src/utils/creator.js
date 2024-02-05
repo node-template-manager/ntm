@@ -113,35 +113,37 @@ const copyFile = (key, projectPath, template) => {
 
 }
 
+/**
+ * Add a new template's name to TEMPLATES array
+ * @param {*} element array name
+ */
 const writeTemplatesFile = (element) => {
 
   const filePath = path.join(__dirname, '../config/init/templates.js');
 
   fse.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      console.error('Error al leer el archivo:', err);
+      console.error('Internal Error:', err);
       return;
     }
 
-    // Busca la posición donde se encuentra el array TEMPLATES
-    const inicioArray = data.indexOf('const TEMPLATES = [');
-    const finArray = data.indexOf(']', inicioArray);
+    // Find the position where should be placed TEMPLATES' array
+    const beginArray = data.indexOf('const TEMPLATES = [');
+    const endArray = data.indexOf(']', beginArray);
 
-    // Extrae el contenido del array TEMPLATES
-    const contenidoArray = data.slice(inicioArray, finArray + 1);
+    // get content from array
+    const arrayContent = data.slice(beginArray, endArray + 1);
 
-    // Construye el nuevo contenido del array con el nuevo elemento
-    const nuevoContenidoArray = `${contenidoArray.slice(0, -1)}, "${element}"]`;
+    // remake array with the new element
+    const newArrayContent = `${arrayContent.slice(0, -1)}, "${element}"]`;
 
-    // Reemplaza el antiguo contenido del array con el nuevo
-    const nuevoContenido = data.replace(contenidoArray, nuevoContenidoArray);
+    // replace old array with new one
+    const newContent = data.replace(arrayContent, newArrayContent);
 
-    // Escribe el nuevo contenido en el archivo
-    fse.writeFile(filePath, nuevoContenido, 'utf8', (err) => {
+    // write new content in the file
+    fse.writeFile(filePath, newContent, 'utf8', (err) => {
       if (err) {
-        console.error('Error al escribir en el archivo:', err);
-      } else {
-        console.log('Elemento añadido con éxito al array TEMPLATES');
+        console.error('Internal Error:', err);
       }
     });
   });
