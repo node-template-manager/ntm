@@ -2,6 +2,7 @@ const { TEMPLATES } = require('../config/init/templates')
 const path = require('path')
 const { creator } = require("../utils/creator")
 const fse = require('fs-extra')
+const { ERRORS } = require('../constants/constants')
 
 
 
@@ -11,7 +12,7 @@ const create = (argv) => {
 
     // template's name must not exists
     if(TEMPLATES.includes(name)){
-      throw Error("name already exists")
+      throw Error("TEMP_EXIST")
     }
 
     const newTemplatePath = path.join(__dirname, `../templates/${name}`)
@@ -25,7 +26,7 @@ const create = (argv) => {
 
 
   } catch (error) {
-    console.log('ntm create error -> ', error.message)
+    console.log('ntm create error -> ', ERRORS[error.message] ?? error.message)
   }
 }
 

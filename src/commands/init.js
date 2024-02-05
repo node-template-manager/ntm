@@ -37,7 +37,7 @@ const init = (argv) => {
 
     console.log("Proyecto iniciado con éxito :)")
   } catch (error) {
-    console.error('ntm init error -> ', ERRORS[error.message])
+    console.error('ntm init error -> ', ERRORS[error.message] ?? error.message)
     if (error.message === "TEMP_UNFOUND") {
       console.log("\nAvailable templates: ")
       TEMPLATES.forEach(value => console.log(`-> ${value}`))
