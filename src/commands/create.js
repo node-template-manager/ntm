@@ -1,6 +1,6 @@
 const { TEMPLATES } = require('../config/init/templates')
 const path = require('path')
-const { creator } = require("../utils/creator")
+const { creator, writeTemplatesFile } = require("../utils/creator")
 const fse = require('fs-extra')
 const { ERRORS } = require('../constants/constants')
 
@@ -14,6 +14,8 @@ const create = (argv) => {
     if(TEMPLATES.includes(name)){
       throw Error("TEMP_EXIST")
     }
+
+    writeTemplatesFile(name)
 
     const newTemplatePath = path.join(__dirname, `../templates/${name}`)
 
