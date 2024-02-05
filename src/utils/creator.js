@@ -1,4 +1,4 @@
-const fsa = require('fs-extra')
+const fse = require('fs-extra')
 const path = require('path')
 
 /**
@@ -50,7 +50,7 @@ const creator = (templData, projectPath, template = null) => {
 const createFolder = (key, projectPath, content = null, template = null) => {
   try {
     // create main folder
-    fsa.mkdirSync(`${projectPath}/${key}`)
+    fse.mkdirSync(`${projectPath}/${key}`)
 
     if (content !== null) {
       for (let conKey in content) {
@@ -81,7 +81,7 @@ const createFolder = (key, projectPath, content = null, template = null) => {
  */
 const createFile = (key, projectPath) => {
   try {
-    fsa.writeFileSync(`${projectPath}/${key}`, '# fill it please')
+    fse.writeFileSync(`${projectPath}/${key}`, '# fill it please')
   } catch (error) {
     throw error
   }
@@ -106,14 +106,48 @@ const copyFile = (key, projectPath, template) => {
 
     }
 
-    fsa.copyFileSync(srcFile, `${projectPath}/${key}`)
+    fse.copyFileSync(srcFile, `${projectPath}/${key}`)
   } catch (error) {
     throw error
   }
 
 }
 
+const writeTemplatesFile = (element) => {
+
+  const filePath = path.join(__dirname, '../config/init/templates.js');
+
+  fse.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error al leer el archivo:', err);
+      return;
+    }
+
+    // Busca la posición donde se encuentra el array TEMPLATES
+    const inicioArray = data.indexOf('const TEMPLATES = [');
+    const finArray = data.indexOf(']', inicioArray);
+
+    // Extrae el contenido del array TEMPLATES
+    const contenidoArray = data.slice(inicioArray, finArray + 1);
+
+    // Construye el nuevo contenido del array con el nuevo elemento
+    const nuevoContenidoArray = `${contenidoArray.slice(0, -1)}, "${element}"]`;
+
+    // Reemplaza el antiguo contenido del array con el nuevo
+    const nuevoContenido = data.replace(contenidoArray, nuevoContenidoArray);
+
+    // Escribe el nuevo contenido en el archivo
+    fse.writeFile(filePath, nuevoContenido, 'utf8', (err) => {
+      if (err) {
+        console.error('Error al escribir en el archivo:', err);
+      } else {
+        console.log('Elemento añadido con éxito al array TEMPLATES');
+      }
+    });
+  });
+}
 
 module.exports = {
   creator,
+  writeTemplatesFile
 }
