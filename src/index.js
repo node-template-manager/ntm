@@ -4,6 +4,7 @@
 const yargs = require("yargs");
 const { init } = require("./commands/init");
 const { create } = require("./commands/create");
+const { show } = require("./commands/show");
 
 yargs
   .scriptName("ntm")
@@ -31,6 +32,9 @@ yargs
     )
   }, function (argv) {
     create(argv)
+  })
+  .command('show', 'show all available templates', function(argv){
+    show()
   })
   .help()
   .argv
