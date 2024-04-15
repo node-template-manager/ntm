@@ -17,7 +17,7 @@ const init = (argv) => {
       throw Error("TEMP_UNFOUND")
     }
 
-    console.log('Has elegido la plantilla ', template)
+    console.log('You have choose template ', template)
 
     // execute npm init
     execSync('npm init -y')
@@ -35,7 +35,7 @@ const init = (argv) => {
     // create node dev dependencies
     createDepends(templateData.devDependencies, kind = 'dev')
 
-    console.log("Proyecto iniciado con éxito :)")
+    console.log("Project initiated successfully :)")
   } catch (error) {
     console.error('ntm init error -> ', ERRORS[error.message] ?? error.message)
     if (error.message === "TEMP_UNFOUND") {
@@ -51,7 +51,7 @@ const readJSONFile = (path) => {
     const data = JSON.parse(content)
     return data
   } catch (error) {
-    console.error('Error al leer el archivo JSON:', error.message);
+    console.error('Error reading JSON file:', error.message);
     return null;
   }
 }

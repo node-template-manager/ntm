@@ -38,7 +38,7 @@ const readJSONFile = (path) => {
     const data = JSON.parse(content)
     return data
   } catch (error) {
-    console.error('Error al leer el archivo JSON:', error.message);
+    console.error('Error reading JSON file:', error.message);
     return null;
   }
 }
