@@ -5,6 +5,7 @@ const { creator } = require('../utils/creator')
 const { createDepends } = require('../utils/createDepends')
 const { TEMPLATES } = require('../config/init/templates')
 const { ERRORS } = require('../constants/constants')
+const { readJSONFile } = require('../utils/files.utils')
 
 
 const init = (argv) => {
@@ -45,16 +46,6 @@ const init = (argv) => {
   }
 }
 
-const readJSONFile = (path) => {
-  try {
-    const content = fse.readFileSync(path, 'utf-8')
-    const data = JSON.parse(content)
-    return data
-  } catch (error) {
-    console.error('Error reading JSON file:', error.message);
-    return null;
-  }
-}
 
 
 
