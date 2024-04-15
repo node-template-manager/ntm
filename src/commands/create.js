@@ -3,6 +3,7 @@ const path = require('path')
 const { creator, writeTemplatesFile } = require("../utils/creator")
 const fse = require('fs-extra')
 const { ERRORS } = require('../constants/constants')
+const { readJSONFile } = require('../utils/files.utils')
 
 
 
@@ -11,7 +12,7 @@ const create = (argv) => {
     const { name } = argv
 
     // template's name must not exists
-    if(TEMPLATES.includes(name)){
+    if (TEMPLATES.includes(name)) {
       throw Error("TEMP_EXIST")
     }
 
@@ -32,16 +33,7 @@ const create = (argv) => {
   }
 }
 
-const readJSONFile = (path) => {
-  try {
-    const content = fse.readFileSync(path, 'utf-8')
-    const data = JSON.parse(content)
-    return data
-  } catch (error) {
-    console.error('Error al leer el archivo JSON:', error.message);
-    return null;
-  }
-}
+
 
 
 module.exports = {
